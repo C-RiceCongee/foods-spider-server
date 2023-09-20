@@ -1,0 +1,40 @@
+app:
+  name: cld-quick-cli
+  version: 1.0.0
+  mode: debug # debug | release
+  port: 8888
+  machineID: 1
+  onlineTime: "2023-02-23"
+  staticBaseUrl: ./  # 前缀 指定是相对路径还是绝对路径 / 或者 ./
+  staticFileDirPath: static/ # staticBaseUrl 下的 文件路径
+
+  # staticBaseUrl+ staticFileDirPath = ./static/ 相对路径
+  # /User/XX/DATA + static/ = /User/XX/DATA/static/ 绝对路径！
+log:
+  level: debug
+  filename: ./logs/web.log
+  err_filename: ./logs/error_web.log
+  call_skip: 0
+  max_size: 200
+  max_age: 20
+  max_backups: 7
+  compress: true
+  local_time: true
+mysql:
+  host: 114.132.251.2
+  port: 18888
+  username: root
+  password: CnrZ3wG5vxLzkzm
+  db_name: foods
+  charset: utf8mb4
+  parse_time: true
+  max_open_connes: 200 # 用于设置最大打开的连接数，默认值为0表示不限制。
+  max_idle_connes: 50 # 用于设置闲置的连接数。
+redis:
+  host: 127.0.0.1
+  port: 16666
+  db: 0
+jwt:
+  token_expire_duration: 72 #token过期时间，单位小时
+  secret: "xx" # jwt 密钥
+  issuer: "xxxx" # 签发人

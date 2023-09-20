@@ -1,0 +1,42 @@
+# Use root/example as user/password credentials
+version: '3.1'
+networks:
+  CLDNet:
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+
+services:
+  CLDMysql:
+    container_name: CLDMysql
+    image: mysql
+    restart: always
+    volumes:
+      - "./data/mysql:/var/lib/mysql"
+      - "./database/mysql/mysql-initdb/init.sql:/docker-entrypoint-initdb.d/init.sql"
+    environment:
+      MYSQL_ROOT_PASSWORD: CnrZ3wG5vxLzkzm
+      TZ: Asia/Shanghai
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --default-authentication-plugin=mysql_native_password
+    expose:
+      - 3306
+    ports:
+      - "18888:3306"
+    networks:
+      CLDNet:
+        ipv4_address: 172.18.0.3
+  CLDRedis:
+    container_name: CLDRedis
+    image: redis
+    restart: always
+    expose:
+      - 6379
+    ports:
+      # 宿主机:容器
+      - "16666:6379"
+    networks:
+      CLDNet:
+        ipv4_address: 172.18.0.4
