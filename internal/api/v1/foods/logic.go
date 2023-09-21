@@ -98,6 +98,8 @@ type FoodNutrientDetails struct {
 	ServerSize          string              `json:"server_size,omitempty"`
 	NutrientDetails     map[string]string   `json:"nutrient_details"`
 	NutrientDetailsData []map[string]string `json:"nutrient_details_data"`
+	OtherKeySlice       []string            `json:"other_key_slice"`
+	OtherValueSlice     [][]string          `json:"other_value_slice"`
 }
 
 func GetFoodDetailsBySearchLinkLogic(link string) *FoodNutrientDetails {
@@ -107,17 +109,20 @@ func GetFoodDetailsBySearchLinkLogic(link string) *FoodNutrientDetails {
 	otherKeySlice := make(map[string][]string)
 	newCLDColly.C.OnHTML("td.details", func(element *colly.HTMLElement) {
 		element.DOM.Find("h4.separated").Each(func(i int, separatedSelection *goquery.Selection) {
-			element.DOM.Find("table.generic").Each(func(i int, selection *goquery.Selection) {
-				otherA := selection.Find("td.borderBottom > a")
-				if otherA.Length() > 0 {
-					otherA.Each(func(i int, otherAItem *goquery.Selection) {
-						if value, exists := otherAItem.Attr("href"); exists {
-							fmt.Println(otherAItem.Text())
-							fmt.Println(value)
-						}
-					})
-				}
-			})
+			f.OtherKeySlice = append(f.OtherKeySlice, separatedSelection.Text())
+		})
+		element.DOM.Find("table.generic").Each(func(i int, selection *goquery.Selection) {
+			otherA := selection.Find("td.borderBottom > a")
+			if otherA.Length() > 0 {
+				s := make([]string, 0)
+				otherA.Each(func(i int, otherAItem *goquery.Selection) {
+					if value, exists := otherAItem.Attr("href"); exists {
+						s = append(s, otherAItem.Text())
+						s = append(s, value)
+					}
+				})
+				f.OtherValueSlice = append(f.OtherValueSlice, s)
+			}
 		})
 	})
 	fmt.Println(otherKeySlice)
