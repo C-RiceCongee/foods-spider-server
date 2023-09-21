@@ -46,7 +46,8 @@ func (f FoodApi) GetCommonFoods() func(ctx *gin.Context) {
 func (f FoodApi) SearchFood() func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
 		foodName := ctx.Query("foodName")
-		foodSearchRes, err := SearchFoodLogic(foodName)
+		pageNo := ctx.Query("pageNo")
+		foodSearchRes, err := SearchFoodLogic(foodName, pageNo)
 		if err != nil {
 			com.ResponseData(ctx, http.StatusOK, foodSearchRes, "搜索食物失败")
 			return

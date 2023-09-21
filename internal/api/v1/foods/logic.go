@@ -3,6 +3,7 @@ package foods
 import (
 	"fmt"
 	"foods-spider-server/pkg"
+	"github.com/PuerkitoBio/goquery"
 	"github.com/gocolly/colly/v2"
 	"strings"
 )
@@ -22,7 +23,6 @@ func GetCommonFoodsLogic() ([]*CommonFood, error) {
 		// 获取a标签的href属性
 		href := e.Attr("href")
 		// 打印结果
-		// fmt.Printf("href: %s\n", href)
 		CommonFoodsListItem.Link = BaseHost + href
 		// 获取a标签中的img标签
 		img := e.DOM.Find("img")
@@ -52,10 +52,10 @@ type FoodSearchResItem struct {
 }
 
 // SearchFoodLogic 搜索食物
-func SearchFoodLogic(foodsName string) ([]*FoodSearchResItem, error) {
+func SearchFoodLogic(foodsName string, pageNo string) ([]*FoodSearchResItem, error) {
 	FoodSearchResItemList := make([]*FoodSearchResItem, 0)
 	aimURL := fmt.Sprintf("%s%s", SearchFoods, pkg.URIEncoder([]string{"q",
-		foodsName, "pg", "0"}))
+		foodsName, "pg", pageNo}))
 	cldC := pkg.NewCLDColly(aimURL)
 	cldC.C.OnHTML("td.borderBottom", func(element *colly.HTMLElement) {
 		var SearchItem = new(FoodSearchResItem)
@@ -81,7 +81,6 @@ func SearchFoodLogic(foodsName string) ([]*FoodSearchResItem, error) {
 					smallTextArrNew = append(smallTextArrNew, strings.TrimSpace(smallTextArr[i]))
 				}
 			}
-			//fmt.Println(smallTextArrNew[0])
 			SearchItem.Desc = smallTextArrNew[0]
 			FoodSearchResItemList = append(FoodSearchResItemList, SearchItem)
 		}
@@ -93,14 +92,41 @@ func SearchFoodLogic(foodsName string) ([]*FoodSearchResItem, error) {
 	return FoodSearchResItemList, err
 }
 
-func GetFoodDetailsBySearchLinkLogic(link string) map[string]string {
+type FoodNutrientDetails struct {
+	FoodName            string              `json:"food_name"`
+	Brand               string              `json:"brand"`
+	ServerSize          string              `json:"server_size,omitempty"`
+	NutrientDetails     map[string]string   `json:"nutrient_details"`
+	NutrientDetailsData []map[string]string `json:"nutrient_details_data"`
+}
+
+func GetFoodDetailsBySearchLinkLogic(link string) *FoodNutrientDetails {
+	f := new(FoodNutrientDetails)
 	newCLDColly := pkg.NewCLDColly(link)
 	keyValueMap := make(map[string]string)
+	newCLDColly.C.OnHTML("div.summarypanelcontent", func(element *colly.HTMLElement) {
+		// 食物名称
+		f.FoodName = element.DOM.Find("h1").Text()
+		f.Brand = element.DOM.Find("a").Text()
+	})
+	newCLDColly.C.OnHTML("div.factPanel", func(element *colly.HTMLElement) {
+		element.DOM.Find("div.factTitle").Each(func(i int, selection *goquery.Selection) {
+			if i != 0 {
+				key := selection.Text()
+				value := selection.Next().Text()
+				valuePure := strings.ReplaceAll(value, "克", "")
+				f.NutrientDetailsData = append(f.NutrientDetailsData, map[string]string{
+					"label": key,
+					"value": valuePure,
+				})
+			}
+		})
+	})
 	newCLDColly.C.OnHTML("div.nutrition_facts.international", func(element *colly.HTMLElement) {
 		// 当前食用量
 		servingSizeValue := element.DOM.Find("div.serving_size.serving_size_value")
 		if servingSizeValue != nil {
-			fmt.Println(servingSizeValue.Text())
+			f.ServerSize = servingSizeValue.Text()
 		}
 		keySlice := make([]string, 0)
 		// 获取营养成分
@@ -119,21 +145,15 @@ func GetFoodDetailsBySearchLinkLogic(link string) map[string]string {
 				if len(strings.TrimSpace(value)) > 0 && i != 1 {
 					valueSlice = append(valueSlice, value)
 				}
-			} else {
-				fmt.Println(attr, "attr")
 			}
 
 		})
 		for i := 0; i < len(keySlice); i++ {
 			keyValueMap[keySlice[i]] = valueSlice[i]
 		}
-		//marshal, err := json.Marshal(keyValueMap)
-		//if err != nil {
-		//	fmt.Println(marshal)
-		//}
-		//fmt.Println(marshal)
 	})
 	// 其他可选使用量
 	_ = newCLDColly.Do()
-	return keyValueMap
+	f.NutrientDetails = keyValueMap
+	return f
 }
