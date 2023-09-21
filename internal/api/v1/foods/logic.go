@@ -92,3 +92,48 @@ func SearchFoodLogic(foodsName string) ([]*FoodSearchResItem, error) {
 	}
 	return FoodSearchResItemList, err
 }
+
+func GetFoodDetailsBySearchLinkLogic(link string) map[string]string {
+	newCLDColly := pkg.NewCLDColly(link)
+	keyValueMap := make(map[string]string)
+	newCLDColly.C.OnHTML("div.nutrition_facts.international", func(element *colly.HTMLElement) {
+		// 当前食用量
+		servingSizeValue := element.DOM.Find("div.serving_size.serving_size_value")
+		if servingSizeValue != nil {
+			fmt.Println(servingSizeValue.Text())
+		}
+		keySlice := make([]string, 0)
+		// 获取营养成分
+		element.ForEach("div.nutrient.left", func(i int, nutrientLeftElement *colly.HTMLElement) {
+			key := nutrientLeftElement.DOM.Text()
+			if len(strings.TrimSpace(key)) > 0 {
+				keySlice = append(keySlice, key)
+			}
+		})
+		valueSlice := make([]string, 0)
+		element.ForEach("div.nutrient.right", func(i int, nutrientLeftElement *colly.HTMLElement) {
+			attr := nutrientLeftElement.Attr("class")
+			if strings.Index(attr, "per_serve") < 0 {
+				value := nutrientLeftElement.DOM.Text()
+				// 过滤掉焦尔值
+				if len(strings.TrimSpace(value)) > 0 && i != 1 {
+					valueSlice = append(valueSlice, value)
+				}
+			} else {
+				fmt.Println(attr, "attr")
+			}
+
+		})
+		for i := 0; i < len(keySlice); i++ {
+			keyValueMap[keySlice[i]] = valueSlice[i]
+		}
+		//marshal, err := json.Marshal(keyValueMap)
+		//if err != nil {
+		//	fmt.Println(marshal)
+		//}
+		//fmt.Println(marshal)
+	})
+	// 其他可选使用量
+	_ = newCLDColly.Do()
+	return keyValueMap
+}

@@ -1,6 +1,7 @@
 package test
 
 import (
+	"encoding/json"
 	"fmt"
 	"foods-spider-server/internal/api/v1/foods"
 	"foods-spider-server/pkg"
@@ -94,10 +95,39 @@ func TestGetMoreDetails(t *testing.T) {
 		if servingSizeValue != nil {
 			fmt.Println(servingSizeValue.Text())
 		}
+		keySlice := make([]string, 0)
+		// 获取营养成分
 		element.ForEach("div.nutrient.left", func(i int, nutrientLeftElement *colly.HTMLElement) {
-			fmt.Println(nutrientLeftElement.DOM.Text())
-			fmt.Println(element.DOM.Find("div.nutrient.right").Get(i))
+			key := nutrientLeftElement.DOM.Text()
+			if len(strings.TrimSpace(key)) > 0 {
+				keySlice = append(keySlice, key)
+			}
 		})
+		valueSlice := make([]string, 0)
+		element.ForEach("div.nutrient.right", func(i int, nutrientLeftElement *colly.HTMLElement) {
+			attr := nutrientLeftElement.Attr("class")
+			if strings.Index(attr, "per_serve") < 0 {
+				value := nutrientLeftElement.DOM.Text()
+				// 过滤掉焦尔值
+				if len(strings.TrimSpace(value)) > 0 && i != 1 {
+					valueSlice = append(valueSlice, value)
+				}
+			} else {
+				fmt.Println(attr, "attr")
+			}
+
+		})
+		fmt.Println(keySlice)
+		fmt.Println(valueSlice)
+		keyValueMap := make(map[string]string)
+		for i := 0; i < len(keySlice); i++ {
+			keyValueMap[keySlice[i]] = valueSlice[i]
+		}
+		marshal, err := json.Marshal(keyValueMap)
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(marshal))
 	})
 	// 其他可选使用量
 	_ = newCLDColly.Do()

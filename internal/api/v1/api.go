@@ -33,6 +33,7 @@ func (ApiV1 *ApiV1) LaunchOnline(engine *gin.Engine) {
 	{
 		foods.GET("/common", ApiV1.IFoodsApi.GetCommonFoods())
 		foods.GET("/search", ApiV1.IFoodsApi.SearchFood())
+		foods.GET("/linkDetails", ApiV1.IFoodsApi.GetDetailsByFoodsLink())
 	}
 }
 
