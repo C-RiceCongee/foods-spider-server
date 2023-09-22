@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "今日食几",
+  "usingComponents": {
+    "u-search": "/uview-ui/components/u-search/u-search",
+    "u-list": "/uview-ui/components/u-list/u-list",
+    "u-list-item": "/uview-ui/components/u-list-item/u-list-item",
+    "u-cell": "/uview-ui/components/u-cell/u-cell"
+  }
+}
