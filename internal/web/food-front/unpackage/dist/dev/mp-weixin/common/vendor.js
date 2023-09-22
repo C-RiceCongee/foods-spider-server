@@ -19271,7 +19271,7 @@ exports.searchFoods = searchFoods;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
+/* WEBPACK VAR INJECTION */(function(wx, uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -19279,7 +19279,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.baseURL = void 0;
 exports.default = request;
 exports.fetchGET = void 0;
-var baseURL = 'http://localhost:8888';
+var baseURL = 'http://192.168.12.146:8888';
 exports.baseURL = baseURL;
 var fetchGET = function fetchGET(url, params) {
   return request({
@@ -19290,6 +19290,10 @@ var fetchGET = function fetchGET(url, params) {
 exports.fetchGET = fetchGET;
 function request(options) {
   return new Promise(function (resolve, reject) {
+    wx.showToast({
+      title: "加载中",
+      icon: "none"
+    });
     uni.request({
       url: baseURL + options.url,
       method: options.method || 'GET',
@@ -19298,6 +19302,7 @@ function request(options) {
         Authorization: "Bearer " + uni.getStorageSync("token")
       },
       success: function success(res) {
+        wx.hideToast();
         if (res.statusCode === 500) {
           uni.showToast({
             title: "服务器异常",
@@ -19323,6 +19328,7 @@ function request(options) {
         }
       },
       fail: function fail(err) {
+        wx.hideToast();
         uni.showToast({
           title: "服务器异常",
           icon: "error"
@@ -19334,7 +19340,7 @@ function request(options) {
     });
   });
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 /* 167 */,
@@ -19342,7 +19348,9 @@ function request(options) {
 /* 169 */,
 /* 170 */,
 /* 171 */,
-/* 172 */
+/* 172 */,
+/* 173 */,
+/* 174 */
 /*!****************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-search/props.js ***!
   \****************************************************************************************************************/
@@ -19478,14 +19486,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 173 */,
-/* 174 */,
 /* 175 */,
 /* 176 */,
 /* 177 */,
 /* 178 */,
 /* 179 */,
-/* 180 */
+/* 180 */,
+/* 181 */,
+/* 182 */
 /*!**************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-list/props.js ***!
   \**************************************************************************************************************/
@@ -19578,14 +19586,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 181 */,
-/* 182 */,
 /* 183 */,
 /* 184 */,
 /* 185 */,
 /* 186 */,
 /* 187 */,
-/* 188 */
+/* 188 */,
+/* 189 */,
+/* 190 */
 /*!*******************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-list-item/props.js ***!
   \*******************************************************************************************************************/
@@ -19612,14 +19620,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 189 */,
-/* 190 */,
 /* 191 */,
 /* 192 */,
 /* 193 */,
 /* 194 */,
 /* 195 */,
-/* 196 */
+/* 196 */,
+/* 197 */,
+/* 198 */
 /*!**************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-cell/props.js ***!
   \**************************************************************************************************************/
@@ -19747,14 +19755,14 @@ exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 197 */,
-/* 198 */,
 /* 199 */,
 /* 200 */,
 /* 201 */,
 /* 202 */,
 /* 203 */,
-/* 204 */
+/* 204 */,
+/* 205 */,
+/* 206 */
 /*!**************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-icon/icons.js ***!
   \**************************************************************************************************************/
@@ -19985,7 +19993,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 205 */
+/* 207 */
 /*!**************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-icon/props.js ***!
   \**************************************************************************************************************/
@@ -20092,14 +20100,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 206 */,
-/* 207 */,
 /* 208 */,
 /* 209 */,
 /* 210 */,
 /* 211 */,
 /* 212 */,
-/* 213 */
+/* 213 */,
+/* 214 */,
+/* 215 */
 /*!**************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-line/props.js ***!
   \**************************************************************************************************************/

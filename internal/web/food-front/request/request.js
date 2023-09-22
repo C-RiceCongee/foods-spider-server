@@ -1,4 +1,4 @@
-export const baseURL = 'http://localhost:8888'
+export const baseURL = 'http://192.168.12.146:8888'
 
 export const fetchGET = (url, params) => request({
 	url,
@@ -7,6 +7,10 @@ export const fetchGET = (url, params) => request({
 
 export default function request(options) {
 	return new Promise((resolve, reject) => {
+		wx.showToast({
+			title: "加载中",
+			icon: "none"
+		})
 		uni.request({
 			url: baseURL + options.url,
 			method: options.method || 'GET',
@@ -14,7 +18,9 @@ export default function request(options) {
 			header: options.header || {
 				Authorization: "Bearer " + uni.getStorageSync("token")
 			},
+
 			success: res => {
+				wx.hideToast()
 				if (res.statusCode === 500) {
 					uni.showToast({
 						title: "服务器异常",
@@ -41,6 +47,7 @@ export default function request(options) {
 				}
 			},
 			fail: err => {
+				wx.hideToast()
 				uni.showToast({
 					title: "服务器异常",
 					icon: "error"
