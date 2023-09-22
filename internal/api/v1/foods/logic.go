@@ -106,7 +106,6 @@ func GetFoodDetailsBySearchLinkLogic(link string) *FoodNutrientDetails {
 	f := new(FoodNutrientDetails)
 	newCLDColly := pkg.NewCLDColly(link)
 	keyValueMap := make(map[string]string)
-	otherKeySlice := make(map[string][]string)
 	newCLDColly.C.OnHTML("td.details", func(element *colly.HTMLElement) {
 		element.DOM.Find("h4.separated").Each(func(i int, separatedSelection *goquery.Selection) {
 			f.OtherKeySlice = append(f.OtherKeySlice, separatedSelection.Text())
@@ -125,7 +124,6 @@ func GetFoodDetailsBySearchLinkLogic(link string) *FoodNutrientDetails {
 			}
 		})
 	})
-	fmt.Println(otherKeySlice)
 	newCLDColly.C.OnHTML("div.summarypanelcontent", func(element *colly.HTMLElement) {
 		// 食物名称
 		f.FoodName = element.DOM.Find("h1").Text()

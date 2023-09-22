@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	v1 "foods-spider-server/internal/api/v1"
+	"foods-spider-server/internal/engine/middlewares"
 	"foods-spider-server/pkg"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -18,6 +19,7 @@ import (
 // CreateServer  The method for creating the service
 func CreateServer() {
 	e := gin.New()
+	e.Use(middlewares.CldLogger(zap.L()))
 	e.Static(pkg.Config.StaticFileDirPath, pkg.Config.StaticBaseUrl+pkg.Config.StaticFileDirPath)
 	apiV1 := v1.NewApiV1()
 	apiV1.LaunchOnline(e)

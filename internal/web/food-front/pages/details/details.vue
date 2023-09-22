@@ -15,7 +15,7 @@
 		<div class="card" v-for="(item,idx) in result.other_key_slice" :key="idx">
 			<h4>{{item}}</h4>
 			<div v-for="(valueItem,valueIdx) in formatKeyValueSlice(result.other_value_slice[idx])" :key="valueIdx">
-				<u--text type="primary" :text="valueItem.label"></u--text>
+				<u--text type="primary" style="margin: 10px 0;" :text="valueItem.label"></u--text>
 			</div>
 		</div>
 		</view>
