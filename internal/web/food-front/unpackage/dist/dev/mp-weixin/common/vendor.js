@@ -775,7 +775,7 @@ function populateParameters(result) {
   // wx.getAccountInfoSync
 
   var parameters = {
-    appId: "",
+    appId: "__UNI__EACCDEB",
     appName: "food-front",
     appVersion: "1.0.0",
     appVersionCode: "100",
@@ -874,7 +874,7 @@ var getAppBaseInfo = {
     var _hostName = getHostName(result);
     var hostLanguage = language.replace('_', '-');
     result = sortObject(Object.assign(result, {
-      appId: "",
+      appId: "__UNI__EACCDEB",
       appName: "food-front",
       appVersion: "1.0.0",
       appVersionCode: "100",
@@ -19350,7 +19350,13 @@ function request(options) {
 /* 171 */,
 /* 172 */,
 /* 173 */,
-/* 174 */
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */
 /*!****************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-search/props.js ***!
   \****************************************************************************************************************/
@@ -19486,14 +19492,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
 /* 181 */,
-/* 182 */
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */
 /*!**************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-list/props.js ***!
   \**************************************************************************************************************/
@@ -19586,14 +19592,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
 /* 189 */,
-/* 190 */
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */
 /*!*******************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-list-item/props.js ***!
   \*******************************************************************************************************************/
@@ -19620,14 +19626,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
 /* 197 */,
-/* 198 */
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */
 /*!**************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-cell/props.js ***!
   \**************************************************************************************************************/
@@ -19755,14 +19761,14 @@ exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
 /* 205 */,
-/* 206 */
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */
 /*!**************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-icon/icons.js ***!
   \**************************************************************************************************************/
@@ -19993,7 +19999,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 207 */
+/* 213 */
 /*!**************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-icon/props.js ***!
   \**************************************************************************************************************/
@@ -20100,14 +20106,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
 /* 214 */,
-/* 215 */
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */
 /*!**************************************************************************************************************!*\
   !*** /Users/xiaohao/code/go/foods-spider-server/internal/web/food-front/uview-ui/components/u-line/props.js ***!
   \**************************************************************************************************************/

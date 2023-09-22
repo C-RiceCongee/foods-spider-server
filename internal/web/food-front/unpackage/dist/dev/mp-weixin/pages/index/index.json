@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "今日食几",
+  "enablePullDownRefresh": false,
   "usingComponents": {
     "u-search": "/uview-ui/components/u-search/u-search",
     "u-list": "/uview-ui/components/u-list/u-list",

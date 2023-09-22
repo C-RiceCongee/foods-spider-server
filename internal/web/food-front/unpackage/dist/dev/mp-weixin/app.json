@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/mine/mine"
   ],
   "subPackages": [],
   "window": {
@@ -8,6 +9,22 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "iconPath": "static/icon/index.png",
+        "selectedIconPath": "static/icon/index_active.png",
+        "pagePath": "pages/index/index",
+        "text": "今日食几"
+      },
+      {
+        "iconPath": "static/icon/mine.png",
+        "selectedIconPath": "static/icon/mine_active.png",
+        "pagePath": "pages/mine/mine",
+        "text": "我的肉肉"
+      }
+    ]
   },
   "usingComponents": {}
 }
