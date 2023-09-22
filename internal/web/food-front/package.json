@@ -1,0 +1,21 @@
+{
+    "id": "echarts-uniapp",
+    "name": "echarts for uniapp",
+    "version": "0.0.1",
+    "description": "echarts适配uni-app",
+    "keywords": [
+        "echarts",
+        "图表"
+    ],
+    "dcloudext": {
+        "category": [
+            "前端组件",
+            "通用组件"
+        ]
+    },
+    "dependencies": {
+        "@antv/wx-f2": "^2.1.1",
+        "echarts": "^5.4.3",
+        "mpvue-echarts": "^0.3.2"
+    }
+}

@@ -5,7 +5,7 @@
 		<div class=" list">
 			<u-list @scrolltolower="scrolltolower" :height="searchListUI.height">
 				<u-list-item v-for="(item, index) in searchList" :key="index">
-					<u-cell :title="item.title" :label="item.desc">
+					<u-cell :title="item.title" :label="item.desc"  @click="goToDetails(item)">
 						<span slot="right-icon">{{item.brand}}</span>
 					</u-cell>
 				</u-list-item>
@@ -88,6 +88,12 @@
 			})
 		},
 		methods: {
+			goToDetails(item) {
+				console.log(item)
+				uni.navigateTo({
+					url: `/pages/details/details?link=${item.link}`,
+				})
+			},
 			scrolltolower() {
 				if (this.loadMore === "loading") return
 				this.loadMore = true

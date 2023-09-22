@@ -16,6 +16,13 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/details/details",
+			"style": {
+				"navigationBarTitleText": "营养数据",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
 	"tabBar": {
@@ -26,8 +33,8 @@
 				"text": "今日食几"
 			},
 			{
-			"iconPath": "static/icon/mine.png",
-			"selectedIconPath": "static/icon/mine_active.png",
+				"iconPath": "static/icon/mine.png",
+				"selectedIconPath": "static/icon/mine_active.png",
 				"pagePath": "pages/mine/mine",
 				"text": "我的肉肉"
 			}

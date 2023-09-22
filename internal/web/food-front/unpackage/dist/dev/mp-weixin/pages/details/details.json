@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "营养数据",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-skeleton": "/uview-ui/components/u-skeleton/u-skeleton",
+    "u--text": "/uview-ui/components/u--text/u--text"
+  }
+}

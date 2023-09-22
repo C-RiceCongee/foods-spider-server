@@ -1,0 +1,18 @@
+
+.card {
+	width: 90vw;
+	margin: 10px auto;
+	background-color: #fff;
+	padding: 20px;
+	box-sizing: border-box;
+	border-radius: 12px;
+	box-shadow: rgba(0, 0, 0, .4) 0 2px 4px, rgba(0, 0, 0, .3) 0 7px 13px -3px, rgba(0, 0, 0, .2) 0 -3px 0 inset;
+}
+.food_name {
+	font-size: 22px;
+}
+.ec-canvas {
+	width: 100rpx;
+	height: 100rpx;
+}
+

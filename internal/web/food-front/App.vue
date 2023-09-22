@@ -16,4 +16,7 @@
 	/*每个页面公共css */
   /*每个页面公共css */
   @import 'uview-ui/index.scss'; //引用uview-ui框架样式
+	html,body{
+		background-color: #eee;
+	}
 </style>

@@ -101,16 +101,16 @@ var components
 try {
   components = {
     uSearch: function () {
-      return Promise.all(/*! import() | uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-search/u-search.vue */ 175))
+      return Promise.all(/*! import() | uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-search/u-search.vue */ 183))
     },
     uList: function () {
-      return Promise.all(/*! import() | uview-ui/components/u-list/u-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-list/u-list")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-list/u-list.vue */ 183))
+      return Promise.all(/*! import() | uview-ui/components/u-list/u-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-list/u-list")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-list/u-list.vue */ 191))
     },
     uListItem: function () {
-      return Promise.all(/*! import() | uview-ui/components/u-list-item/u-list-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-list-item/u-list-item")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-list-item/u-list-item.vue */ 191))
+      return Promise.all(/*! import() | uview-ui/components/u-list-item/u-list-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-list-item/u-list-item")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-list-item/u-list-item.vue */ 199))
     },
     uCell: function () {
-      return Promise.all(/*! import() | uview-ui/components/u-cell/u-cell */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-cell/u-cell")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell/u-cell.vue */ 199))
+      return Promise.all(/*! import() | uview-ui/components/u-cell/u-cell */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-cell/u-cell")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell/u-cell.vue */ 207))
     },
   }
 } catch (e) {
@@ -265,6 +265,12 @@ var _default = {
     });
   },
   methods: {
+    goToDetails: function goToDetails(item) {
+      console.log(item);
+      uni.navigateTo({
+        url: "/pages/details/details?link=".concat(item.link)
+      });
+    },
     scrolltolower: function scrolltolower() {
       if (this.loadMore === "loading") return;
       this.loadMore = true;

@@ -18,10 +18,27 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.1.1",
+  "libVersion": "",
   "appid": "wx2d6b039810b8fdd6",
   "projectname": "food-front",
-  "condition": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": []
+    }
+  },
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2

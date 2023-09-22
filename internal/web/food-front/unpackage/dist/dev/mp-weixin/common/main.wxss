@@ -255,4 +255,7 @@
   -webkit-appearance: none;
   background: transparent;
 }
+page, page {
+  background-color: #eee;
+}
 
