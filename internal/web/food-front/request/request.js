@@ -1,4 +1,4 @@
-export const baseURL = 'http://192.168.2.15:8888'
+export const baseURL = 'https://api.quancundexiwang.wang'
 // export const baseURL = 'http://192.168.12.146:8888'
 
 export const fetchGET = (url, params) => request({

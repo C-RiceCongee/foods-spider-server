@@ -19283,7 +19283,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.baseURL = void 0;
 exports.default = request;
 exports.fetchGET = void 0;
-var baseURL = 'http://192.168.2.15:8888';
+var baseURL = 'https://api.quancundexiwang.wang';
 // export const baseURL = 'http://192.168.12.146:8888'
 exports.baseURL = baseURL;
 var fetchGET = function fetchGET(url, params) {
