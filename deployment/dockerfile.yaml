@@ -1,0 +1,18 @@
+FROM alpine
+RUN apk update && apk add --no-cache ca-certificates git openssh gcc musl-dev
+RUN apk add --no-cache go
+ENV TZ=Asia/Shanghai
+RUN apk update \
+&& apk add tzdata \
+&& echo "${TZ}" > /etc/timezone \
+&& ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+&& rm /var/cache/apk/*
+
+ENV GOPATH /go
+ENV PATH $PATH:/usr/local/go/bin:$GOPATH/bin
+WORKDIR /app
+COPY foods .
+ENV DIR_PATH=conf
+ENV MODE=release
+EXPOSE 8888
+CMD ["/app/foods","-env","${MODE}", "-dir", "${DIR_PATH}"]

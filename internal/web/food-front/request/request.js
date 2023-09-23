@@ -1,4 +1,5 @@
-export const baseURL = 'http://192.168.12.146:8888'
+export const baseURL = 'http://192.168.2.15:8888'
+// export const baseURL = 'http://192.168.12.146:8888'
 
 export const fetchGET = (url, params) => request({
 	url,

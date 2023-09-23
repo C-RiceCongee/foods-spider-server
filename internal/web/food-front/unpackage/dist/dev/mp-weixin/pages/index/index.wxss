@@ -24,4 +24,11 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.searchHistory.data-v-57280228 {
+  padding: 10px;
+  box-sizing: border-box;
+}
+.searchHistory .searchItem.data-v-57280228 {
+  margin: 10px 0;
+}
 

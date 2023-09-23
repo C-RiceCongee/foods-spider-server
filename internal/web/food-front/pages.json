@@ -25,21 +25,21 @@
 
 		}
 	],
-	"tabBar": {
-		"list": [{
-				"iconPath": "static/icon/index.png",
-				"selectedIconPath": "static/icon/index_active.png",
-				"pagePath": "pages/index/index",
-				"text": "今日食几"
-			},
-			{
-				"iconPath": "static/icon/mine.png",
-				"selectedIconPath": "static/icon/mine_active.png",
-				"pagePath": "pages/mine/mine",
-				"text": "我的肉肉"
-			}
-		]
-	},
+	// "tabBar": {
+	// 	"list": [{
+	// 			"iconPath": "static/icon/index.png",
+	// 			"selectedIconPath": "static/icon/index_active.png",
+	// 			"pagePath": "pages/index/index",
+	// 			"text": "今日食几"
+	// 		},
+	// 		{
+	// 			"iconPath": "static/icon/mine.png",
+	// 			"selectedIconPath": "static/icon/mine_active.png",
+	// 			"pagePath": "pages/mine/mine",
+	// 			"text": "我的肉肉"
+	// 		}
+	// 	]
+	// },
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

@@ -12,7 +12,7 @@
 				<u--text type="info" :text="value"></u--text>
 			</div>
 		</div>
-		<div class="card" v-for="(item,idx) in result.other_key_slice" :key="idx">
+		<div class="card" v-for="(item,idx) in result?result.other_key_slice:[]" :key="idx">
 			<h4>{{item}}</h4>
 			<div v-for="(valueItem,valueIdx) in formatKeyValueSlice(result.other_value_slice[idx])" :key="valueIdx">
 				<u--text type="primary" style="margin: 10px 0;" :text="valueItem.label"></u--text>
@@ -28,7 +28,6 @@
 	import {
 		linkDetails
 	} from "@/request/api.js"
-	import f2 from "@antv/wx-f2"
 
 	export default {
 		components: {
@@ -112,7 +111,7 @@
 		padding: 20px;
 		box-sizing: border-box;
 		border-radius: 12px;
-		box-shadow: rgba(0, 0, 0, .4) 0 2px 4px, rgba(0, 0, 0, .3) 0 7px 13px -3px, rgba(0, 0, 0, .2) 0 -3px 0 inset;
+box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 	}
 
 	.food_name {

@@ -1,6 +1,6 @@
 import App from './App'
 import uView from "uview-ui";
-
+import store from './store' 
 // #ifndef VUE3
 import Vue from 'vue'
 import './uni.promisify.adaptor'
@@ -9,7 +9,8 @@ App.mpType = 'app'
 Vue.use(uView);
 
 const app = new Vue({
-  ...App
+  ...App,
+  store
 })
 app.$mount()
 // #endif
