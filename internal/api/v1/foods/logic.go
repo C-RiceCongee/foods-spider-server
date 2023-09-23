@@ -117,7 +117,7 @@ func GetFoodDetailsBySearchLinkLogic(link string) *FoodNutrientDetails {
 				otherA.Each(func(i int, otherAItem *goquery.Selection) {
 					if value, exists := otherAItem.Attr("href"); exists {
 						s = append(s, otherAItem.Text())
-						s = append(s, value)
+						s = append(s, BaseHost+value)
 					}
 				})
 				f.OtherValueSlice = append(f.OtherValueSlice, s)

@@ -1,8 +1,9 @@
 <template>
 	<u-skeleton rows="10" :rowsHeight="20" :loading="result === null" :title="false">
 		<div class="card">
+			<!-- 品牌名称点击进入search -->
 			<h2 class="food_name">{{result.food_name}}</h2>
-			<u--text mode="link" :text="result.brand" href="https://www.uviewui.com"></u--text>
+			<u--text  type="primary"  :text="result.brand" @click="searchBrand"></u--text>
 		</div>
 		<div class="card">
 			<h4>营养元素</h4>
@@ -14,8 +15,9 @@
 		</div>
 		<div class="card" v-for="(item,idx) in result?result.other_key_slice:[]" :key="idx">
 			<h4>{{item}}</h4>
-			<div v-for="(valueItem,valueIdx) in formatKeyValueSlice(result.other_value_slice[idx])" :key="valueIdx">
-				<u--text type="primary" style="margin: 10px 0;" :text="valueItem.label"></u--text>
+			<div  style="margin: 16px 0;"  v-for="(valueItem,valueIdx) in formatKeyValueSlice(result.other_value_slice[idx])" :key="valueIdx">
+				<u--text type="primary"  :text="valueItem.label"
+					@click="toggleCurrentDetails(valueItem)"></u--text>
 			</div>
 		</div>
 		</view>
@@ -68,6 +70,18 @@
 			}
 		},
 		methods: {
+			searchBrand(){
+				uni.reLaunch({
+					url:`/pages/index/index?foodName=${this.result.brand}`
+				})
+			},
+			// 当前页面切换details
+			toggleCurrentDetails(valueItem) {
+				const {value} = valueItem
+				uni.navigateTo({
+					url: `/pages/details/details?link=${value}`,
+				})
+			},
 			formatKeyValueSlice(arr) {
 				const retArr = []
 				for (let i = 0; i < arr.length; i += 2) {
@@ -104,6 +118,9 @@
 </script>
 
 <style>
+/* 	/deep/ .u-text{
+		margin:18px 6px !important;
+	} */
 	.card {
 		width: 90vw;
 		margin: 10px auto;
@@ -111,7 +128,7 @@
 		padding: 20px;
 		box-sizing: border-box;
 		border-radius: 12px;
-box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+		box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 	}
 
 	.food_name {

@@ -139,6 +139,15 @@ var render = function () {
       }
     }
   )
+  if (!_vm._isMounted) {
+    _vm.e0 = function ($event, valueItem) {
+      var _temp = arguments[arguments.length - 1].currentTarget.dataset,
+        _temp2 = _temp.eventParams || _temp["event-params"],
+        valueItem = _temp2.valueItem
+      var _temp, _temp2
+      return _vm.toggleCurrentDetails(valueItem)
+    }
+  }
   _vm.$mp.data = Object.assign(
     {},
     {
@@ -180,7 +189,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
@@ -190,6 +199,8 @@ exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 55));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 57));
 var _api = __webpack_require__(/*! @/request/api.js */ 165);
+//
+//
 //
 //
 //
@@ -255,6 +266,18 @@ var _default = {
     };
   },
   methods: {
+    searchBrand: function searchBrand() {
+      uni.reLaunch({
+        url: "/pages/index/index?foodName=".concat(this.result.brand)
+      });
+    },
+    // 当前页面切换details
+    toggleCurrentDetails: function toggleCurrentDetails(valueItem) {
+      var value = valueItem.value;
+      uni.navigateTo({
+        url: "/pages/details/details?link=".concat(value)
+      });
+    },
     formatKeyValueSlice: function formatKeyValueSlice(arr) {
       var retArr = [];
       for (var i = 0; i < arr.length; i += 2) {
@@ -305,6 +328,7 @@ var _default = {
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

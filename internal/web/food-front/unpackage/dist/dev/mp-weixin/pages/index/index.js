@@ -239,8 +239,14 @@ var _default = {
       return this.$store.state.searchHistory;
     }
   },
-  onLoad: function onLoad() {
+  onLoad: function onLoad(params) {
     var _this = this;
+    // 如果参数存在则说明，是从详情页跳回的首页搜索~
+    var foodName = params.foodName;
+    if (foodName) {
+      this.searchParams.foodName = foodName;
+      this.handlerSearch();
+    }
     uni.getSystemInfo().then(function (res) {
       _this.searchListUI.height = res.windowHeight - _this.$refs.search.height;
     });
@@ -257,14 +263,16 @@ var _default = {
       this.searchParams.pageNo += 1;
       this.fetchSearchByParams();
     },
-    handlerSearch: function handlerSearch(value) {
-      var _this2 = this;
+    handlerSearch: function handlerSearch() {
+      var _arguments = arguments,
+        _this2 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var value;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(value);
+                value = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : "";
                 value !== "" && _this2.$store.commit("setSearchHistory", value);
                 _this2.searchParams.pageNo = 0;
                 _this2.searchList = [];
@@ -303,6 +311,10 @@ var _default = {
           }
         }, _callee2);
       }))();
+    },
+    researchByHistory: function researchByHistory(foodName) {
+      this.searchParams.foodName = foodName;
+      this.handlerSearch();
     }
   }
 };

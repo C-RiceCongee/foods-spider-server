@@ -5,7 +5,7 @@
 		<view v-show="searchList.length===0" class="searchHistory">
 			<u-text text="搜索历史"></u-text>
 			<view v-if="searchHistory.length>0">
-				<view class="searchItem" v-for="(item,index) in searchHistory" key="index">
+				<view class="searchItem" v-for="(item,index) in searchHistory" :key="index" @click="researchByHistory(item)">
 					<u-text :text="item" type="info"></u-text>
 				</view>
 			</view>
@@ -49,7 +49,13 @@
 				return this.$store.state.searchHistory
 			}
 		},
-		onLoad() {
+		onLoad(params) {
+			// 如果参数存在则说明，是从详情页跳回的首页搜索~
+			const {foodName} = params
+			if(foodName){
+				this.searchParams.foodName = foodName
+				this.handlerSearch()
+			}
 			uni.getSystemInfo().then(res => {
 				this.searchListUI.height = res.windowHeight - this.$refs.search.height
 			})
@@ -66,8 +72,7 @@
 				this.searchParams.pageNo += 1
 				this.fetchSearchByParams()
 			},
-			async handlerSearch(value) {
-				console.log(value)
+			async handlerSearch(value = "") {
 				value !== "" && this.$store.commit("setSearchHistory", value)
 				this.searchParams.pageNo = 0
 				this.searchList = []
@@ -81,6 +86,10 @@
 				})
 				this.searchList.push(...res.result)
 				this.loadMore = "loadmore"
+			},
+			researchByHistory(foodName){
+				this.searchParams.foodName = foodName
+				this.handlerSearch()
 			}
 		}
 	}
@@ -92,7 +101,7 @@
 		box-sizing: border-box;
 
 		.searchItem {
-			margin: 10px 0;
+			margin: 18px 0;
 		}
 	}
 </style>
