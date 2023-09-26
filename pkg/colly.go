@@ -13,6 +13,7 @@ type CLDColly struct {
 func (c *CLDColly) Do() error {
 	return c.C.Visit(c.url)
 }
+
 func NewCLDColly(url string) *CLDColly {
 	c := colly.NewCollector()
 	extensions.Referer(c)

@@ -29,11 +29,11 @@ func (ApiV1 *ApiV1) LaunchOnline(engine *gin.Engine) {
 	{
 		user.GET("/list", ApiV1.IUserApi.GetUserList())
 	}
-	foods := engine.Group(ApiV1.IFoodsApi.SetPrefix())
+	fds := engine.Group(ApiV1.IFoodsApi.SetPrefix())
 	{
-		foods.GET("/common", ApiV1.IFoodsApi.GetCommonFoods())
-		foods.GET("/search", ApiV1.IFoodsApi.SearchFood())
-		foods.GET("/linkDetails", ApiV1.IFoodsApi.GetDetailsByFoodsLink())
+		fds.GET("/common", ApiV1.IFoodsApi.GetCommonFoods())
+		fds.GET("/search", ApiV1.IFoodsApi.SearchFood())
+		fds.GET("/linkDetails", ApiV1.IFoodsApi.GetDetailsByFoodsLink())
 	}
 }
 
